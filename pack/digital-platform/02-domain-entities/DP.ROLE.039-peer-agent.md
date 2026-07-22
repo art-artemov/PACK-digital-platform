@@ -4,7 +4,7 @@ name: Peer Agent (равноправный peer-агент в multi-agent сес
 type: role-description
 status: draft
 valid_from: 2026-05-11
-summary: "Peer-агент в multi-agent IWE сессии: работает в одном из двух режимов — (A) workspace-координация через Local Gateway lock + peer-status, (B) conversational-сессия через журнал реплик с позициями писатель/напарник. Конкретные инстансы: Claude Code, Kimikode, Aider и т.п."
+summary: "Peer-агент в multi-agent IWE сессии: работает в одном из двух режимов — (A) workspace-координация через Local Gateway lock + peer-status, (B) conversational-сессия через журнал реплик с позициями писатель/напарник. Конкретные инстансы: Claude Code, Kimikode, Codex CLI, Aider и т.п."
 related:
   specializes: [U.RoleAssignment]
   realizes: [DP.SC.034, DP.SC.035, DP.SC.154]
@@ -13,8 +13,8 @@ related:
     - DP.SC.035   # peer-agent choreography (workspace-режим)
     - DP.SC.154   # multi-agent conversational session (conversational-режим)
 created: 2026-05-11
-updated: 2026-05-30
-wp: WP-150 Ф7, WP-337-З-Ф1, WP-367 Ф5
+updated: 2026-07-22
+wp: WP-150 Ф7, WP-337-З-Ф1, WP-367 Ф5, WP-49
 ---
 
 # Peer Agent (DP.ROLE.039)
@@ -91,6 +91,7 @@ wp: WP-150 Ф7, WP-337-З-Ф1, WP-367 Ф5
 |---------|-----------------|--------------------|
 | **Claude Code** | Reasoning, архитектура, problem-framing, SOTA-анализ, документация | Полный набор + reasoning tools |
 | **Kimikode** | Быстрая генерация кода, рефакторинг, тесты | Code tools + git + tests, без архитектурного reasoning |
+| **Codex CLI (ChatGPT)** | Быстрая генерация кода, вторая независимая точка зрения помимо Kimi (2026-07-22, WP-49) | Code tools + git, headless через `codex exec -s workspace-write` |
 | **Aider** (будущий) | Multi-file refactoring | Code edit tools, git |
 
 **Различение по сильным сторонам — не иерархия.** Claude не «командует» Kimikode в коде, Kimikode не «командует» Claude в reasoning. Каждый берёт задачи, которые лучше подходят его модели. Если ни один явно не подходит — пилот распределяет.
