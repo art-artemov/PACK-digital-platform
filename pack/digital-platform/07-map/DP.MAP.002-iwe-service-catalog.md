@@ -5,7 +5,7 @@ type: map
 status: draft
 summary: "Кросс-системный каталог всех сервисов IWE: сервис → роль → вход → выход → потребитель → исполнитель → триггер"
 created: 2026-02-23
-updated: 2026-02-23
+updated: 2026-08-29
 related:
   uses: [DP.ROLE.001, DP.D.033, DP.ARCH.001]
   extends: [DP.MAP.001]
@@ -123,6 +123,7 @@ related:
 | S67 | **Server-Side Extractor** | [R2 Экстрактор](../02-domain-entities/DP.ROLE.001-platform-roles.md#агентские-роли-grade-2) | user_prompt + context_artifacts | inbox/captures/* commit + run_id | R14 Заказчик | A1 Claude → I12 agent-runner | ⚡ MCP tool `run_extractor` через Aisystant MCP | [DP.SC.163](../08-service-clauses/DP.SC.163-server-agents-mvp.md), aisystant/agent-runner |
 | S68 | **Run Status Poll** | [R1/R2](../02-domain-entities/DP.ROLE.001-platform-roles.md#агентские-роли-grade-2) | run_id (Ory JWT) | status + error_code + result_url + committed_files | R14 Заказчик | I12 agent-runner (GET /v1/runs/{run_id}) | ⚡ MCP tool `get_run_status` (poll каждые 5-10с) | [DP.SC.163](../08-service-clauses/DP.SC.163-server-agents-mvp.md) |
 | S69 | **Auto-Scope Provisioning** | R8 Синхронизатор | webhook installation_repositories.added (githubUsername, repo.name) | INSERT в agent_scopes_mvp (run_strategist + run_extractor) | I12 agent-runner | I13 gateway-mcp webhook → I12 agent-runner POST /v1/admin/scope-provision | ⚡ install GitHub App | [DP.SC.163 §Auto-scope provisioning (Ф4)](../08-service-clauses/DP.SC.163-server-agents-mvp.md) |
+| S70 | **Датчик темпа** | [Датчик темпа (DP.ROLE.088)](../02-domain-entities/DP.ROLE.088-self-tempo-sensor.md) | суточная выгрузка показателей Health Connect (сон, пульс покоя, ночная вариабельность) | строка темпа в разделе «Требует внимания» плана дня ([DP.WP.017](../04-work-products/DP.WP.017-tempo-line.md)) | R01 Пилот | скрипты приватного хранилища самомониторинга (забор, разбор, сборка строки) | ⏰ забор каждые 4ч + открытие дня | [DP.SC.058](../08-service-clauses/DP.SC.058-self-tempo-sensor.md), WP-136 Ф1 |
 
 ---
 
@@ -154,6 +155,7 @@ related:
 | [SC.112](../08-service-clauses/DP.SC.112-subscription-billing.md) | Подписки и биллинг | S63, S65 |
 | [SC.114](../08-service-clauses/DP.SC.114-crm.md) | CRM | S64 |
 | [SC.117](../08-service-clauses/DP.SC.117-async-homework-review.md) | Асинхронная проверка и обсуждение ДЗ | S13, S37, S60 |
+| [SC.058](../08-service-clauses/DP.SC.058-self-tempo-sensor.md) | Датчик темпа пилота | S70 |
 
 ---
 
