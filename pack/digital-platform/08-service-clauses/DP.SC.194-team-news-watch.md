@@ -13,7 +13,7 @@ related:
   services: []
   uses: []
   extends: []
-wp: WP-165
+wp: WP-167
 ---
 
 # [DP.SC.194] Наблюдатель новостей команды
